@@ -39,6 +39,22 @@ class Game:
 
 		return valid_moves
 	
+	# Realizar movimento
+	def make_move(self, move):
+		empty_row, empty_col = None, None
+
+		for i, row in enumerate(self.state):
+			if 0 in row:
+				empty_row, empty_col = i, row.index(0)
+				break
+
+		new_row, new_col = move
+
+		self.state[empty_row][empty_col], self.state[new_row][new_col] = (
+			self.state[new_row][new_col],
+			self.state[empty_row][empty_col]
+		)
+	
 	# Imprimir o tabuleiro na tela
 	def display_board(self):
 		print("Estado atual:")
