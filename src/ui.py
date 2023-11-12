@@ -47,3 +47,22 @@ def print_initial_state(initial_state):
 	for row in initial_state:
 		row_str = " ".join(f"[ {elem if elem != 0 else ' '} ]" for elem in row)
 		print(row_str)
+
+# Imprimir o menu na tela
+def menu():
+	print("\nEscolha a abordagem de busca utilizada:")
+	print("[1] Busca em largura")
+	print("[2] Busca em profundidade")
+	print("[3] Busca Gulosa")
+	print("[4] A*")
+
+	while True:
+		try:
+			choice = int(input(">>> "))
+
+			if 1 <= choice <= 4:
+				return choice
+			else:
+				print("Por favor, escolha uma opção válida.")
+		except ValueError:
+			print("Por favor, insira um número válido.")
