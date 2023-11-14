@@ -11,15 +11,16 @@ class Game:
 	def is_goal_state(self):
 		return self.state == self.goal_state
 	
-	# Verificar os movimentos válidos
-	def get_valid_moves(self):
-		empty_row, empty_col = None, None
-		valid_moves = []
-
+	# Pegar a posição vazia
+	def get_empty_position(self):
 		for i, row in enumerate(self.state):
 			if 0 in row:
-				empty_row, empty_col = i, row.index(0)
-				break
+				return i, row.index(0)
+	
+	# Verificar os movimentos válidos
+	def get_valid_moves(self):
+		empty_row, empty_col = self.get_empty_position()
+		valid_moves = []
 		
 		# Esquerda
 		if empty_col > 0:
@@ -41,13 +42,7 @@ class Game:
 	
 	# Realizar movimento
 	def make_move(self, move):
-		empty_row, empty_col = None, None
-
-		for i, row in enumerate(self.state):
-			if 0 in row:
-				empty_row, empty_col = i, row.index(0)
-				break
-
+		empty_row, empty_col = self.get_empty_position()
 		new_row, new_col = move
 
 		self.state[empty_row][empty_col], self.state[new_row][new_col] = (
